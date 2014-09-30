@@ -22,6 +22,11 @@ import net.ruangtedy.ml.util.Matrix;
 
 public class ex1 extends ApplicationFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4590485200476886004L;
+
 	public ex1(String title) {
 		super(title);
 

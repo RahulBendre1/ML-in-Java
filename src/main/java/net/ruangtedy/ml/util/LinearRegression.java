@@ -41,10 +41,13 @@ public class LinearRegression {
 		RealMatrix sum = (e.transpose()).multiply(e);
 		double sumvalue = sum.getEntry(0, 0);
 		double J = sumvalue / (2 * m);
-		// J = (1/(2*m)) * (h-y)' * (h-y);
-		// double J=(squareerror.getTrace())/(2*m);
+	
 
 		return J;
 
+	}
+	
+	public static void featureNormalize(){
+		
 	}
 }

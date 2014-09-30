@@ -47,18 +47,21 @@ public class Data {
 				data = reader.readLine();
 				if (data == null || data.trim().length() == 0) {
 					continue;
-				} else {
+				} 
+				else {
 					final String[] line = data.split(",");
-					if (line.length == 2) {
+					Double[] d=new Double[line.length];
+					for(int j=0;j<line.length;j++) {
 						try {
-							final double a = Double.parseDouble(line[0]);
-							final double b = Double.parseDouble(line[1]);
-							final Double[] d = { a, b };
-							dataSource.add(d);
+							
+							d[j] = Double.parseDouble(line[j]);
+							
 						} catch (final NumberFormatException e) {
 							System.out.println(e);
 						}
 					}
+					dataSource.add(d);
+					
 				} // End of the if //
 			} while (data != null);
 			System.out.println("INFO: data loaded : " + filename);
