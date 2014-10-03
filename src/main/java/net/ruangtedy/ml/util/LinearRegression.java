@@ -4,6 +4,27 @@ package net.ruangtedy.ml.util;
 import org.apache.commons.math3.linear.RealMatrix;
 
 public class LinearRegression {
+	public static RealMatrix GradientDescentMulti(RealMatrix X, RealMatrix Y, RealMatrix theta, double alpha, int num_iters){
+		double m = Y.getRowDimension();
+
+		for(int i=0;i<num_iters;i++){
+			RealMatrix h = X.multiply(theta);
+			RealMatrix error=(h.subtract(Y)).transpose();
+			
+			RealMatrix sum=(error.multiply(X)).transpose();
+			
+			theta=theta.subtract(sum.scalarMultiply((1/m)*alpha));
+			
+			
+
+			
+
+		}
+
+		return theta;
+		
+	}
+	
 	public static RealMatrix GradientDescent(RealMatrix X, RealMatrix Y, RealMatrix theta, double alpha, int num_iters){
 		double m = Y.getRowDimension();
 
@@ -47,7 +68,5 @@ public class LinearRegression {
 
 	}
 	
-	public static void featureNormalize(){
-		
-	}
+	
 }

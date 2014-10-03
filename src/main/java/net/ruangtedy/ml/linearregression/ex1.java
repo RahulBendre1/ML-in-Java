@@ -36,7 +36,7 @@ public class ex1 extends ApplicationFrame {
 
 		List<Double[]> data = Data.load("ex1data1.txt");
 
-		RealMatrix mtx = new Array2DRowRealMatrix(Data.convertToMatrix2D(data));
+		RealMatrix mtx = new Array2DRowRealMatrix(Data.convertToMatrix2D(data, 2));
 
 		RealMatrix X = new Array2DRowRealMatrix(mtx.getRowDimension(), 2);
 		X.setColumn(0, Matrix.Ones(mtx.getRowDimension()));

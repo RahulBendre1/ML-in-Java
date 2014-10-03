@@ -6,14 +6,40 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.math3.linear.Array2DRowRealMatrix;
+import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.stat.StatUtils;
+import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
+
 public class Data {
-	public static double[][] convertToMatrix2D(List<Double[]> data) {
-		double[][] mtx = new double[data.size()][2];
+	
+	public static RealMatrix featureNormalize(RealMatrix X){
+		RealMatrix X_norm=X.copy();
+		RealMatrix mu=new Array2DRowRealMatrix(Matrix.Zeros(1,2));
+		System.out.println(mu);
+		RealMatrix sigma=new Array2DRowRealMatrix(Matrix.Zeros(1,2));
+
+		for(int i=0; i<X.getColumnDimension();i++ ){
+			RealMatrix feature=X.getColumnMatrix(i);
+			mu.setEntry(0, i, StatUtils.mean(feature.getColumn(0)));
+			sigma.setEntry(0, i, Math.sqrt(StatUtils.variance(feature.getColumn(0))));
+			X_norm.setColumnMatrix(i,(feature.scalarAdd(-1*mu.getEntry(0, i))).scalarMultiply(1/(sigma.getEntry(0, i))));
+		}
+		System.out.println(X_norm);
+		return X_norm;
+		
+		
+	}
+	public static double[][] convertToMatrix2D(List<Double[]> data, int coloumn) {
+		
+		double[][] mtx = new double[data.size()][coloumn];
 		int i = 0;
 
 		for (Double[] d : data) {
-			mtx[i][0] = d[0].doubleValue();
-			mtx[i][1] = d[1].doubleValue();
+			for(int j=0;j<coloumn;j++){
+				mtx[i][j] = d[j].doubleValue();
+
+			}
 			i++;
 		}
 		return mtx;
