@@ -18,7 +18,7 @@ public class LinearRegression {
 			
 
 			
-
+			//TODO Compute Cost Function here
 		}
 
 		return theta;
@@ -42,8 +42,8 @@ public class LinearRegression {
 			theta.setEntry(0, 0, temp0);
 			theta.setEntry(1, 0, temp1);
 			
-			double J=LinearRegression.ComputeCost(X, Y, theta);
-			//System.out.println(theta);
+			//double J=LinearRegression.ComputeCost(X, Y, theta);
+			
 
 			
 

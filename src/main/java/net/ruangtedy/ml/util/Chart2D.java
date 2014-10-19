@@ -63,6 +63,54 @@ public class Chart2D {
 		// OPTIONAL CUSTOMISATION COMPLETED.
 		return chart;
 	}
+	
+	
+public static JFreeChart createScatteredChart(XYDataset dataset, String title) {
+		
+		// create the chart...
+		JFreeChart chart = ChartFactory.createXYLineChart(
+		title, // chart title
+		"Exam 1 Score", // x axis label
+		"Exam 2 Score", // y axis label
+		dataset, // data
+		PlotOrientation.VERTICAL,
+		true, // include legend
+		true, // tooltips
+		false // urls
+		);
+		
+		// NOW DO SOME OPTIONAL CUSTOMISATION OF THE CHART...
+		chart.setBackgroundPaint(Color.white);
+		
+		// get a reference to the plot for further customisation...
+		XYPlot plot = (XYPlot) chart.getPlot();
+		plot.setDomainCrosshairVisible(true);
+		plot.setRangeCrosshairVisible(true);
+
+		
+		XYLineAndShapeRenderer renderer= (XYLineAndShapeRenderer) plot.getRenderer();
+		
+		renderer.setSeriesLinesVisible(0, false);
+		renderer.setSeriesShapesVisible(0, true);
+
+		renderer.setSeriesLinesVisible(1, false);
+		renderer.setSeriesShapesVisible(1, true);
+
+		Shape cross = ShapeUtilities.createRegularCross(3, 0);
+		Shape dot = ShapeUtilities.createDiamond(3);		
+		renderer.setSeriesShape(1, dot);
+		renderer.setSeriesShape(0, cross);
+		
+		renderer.setSeriesPaint(0, Color.black);
+		renderer.setSeriesPaint(1, Color.yellow);
+
+		
+		// change the auto tick unit selection to integer units only...
+		NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+		rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+		// OPTIONAL CUSTOMISATION COMPLETED.
+		return chart;
+	}
 	private static JFreeChart createScatteredChart(XYSeriesCollection xyseries) {
 		JFreeChart jfreechart = ChartFactory.createScatterPlot(
 				"Scatter Plot Demo", "X", "Y", xyseries,
