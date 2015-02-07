@@ -3,6 +3,7 @@ package net.ruangtedy.ml.logisticregression;
 import java.awt.Dimension;
 import java.util.List;
 
+import javax.rmi.CORBA.Util;
 import javax.swing.JPanel;
 
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
@@ -14,9 +15,11 @@ import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
+import edu.stanford.nlp.optimization.QNMinimizer;
 import net.ruangtedy.ml.linearregression.ex1;
 import net.ruangtedy.ml.util.Chart2D;
 import net.ruangtedy.ml.util.Data;
+import net.ruangtedy.ml.util.LogisticRegression;
 import net.ruangtedy.ml.util.Matrix;
 
 public class ex2 extends ApplicationFrame {
@@ -43,7 +46,7 @@ public class ex2 extends ApplicationFrame {
 		/*We start the exercise by first plotting the data to understand the 
 		 *the problem we are working with.
 		 */
-		plotData(X, Y);
+		//plotData(X, Y);
 		
 		/* ============ Part 2: Compute Cost and Gradient ============
 		 * In this part of the exercise, you will implement the cost and gradientfor logistic regression. 
@@ -56,8 +59,11 @@ public class ex2 extends ApplicationFrame {
 		X.setColumn(1, X_temp.getColumn(0));
 		X.setColumn(2, X_temp.getColumn(1));
 
-		System.out.println(X);
-
+		RealMatrix init_theta=new Array2DRowRealMatrix(Matrix.Zeros(3, 1));
+		 
+		double J=LogisticRegression.costFunction(init_theta, X, Y);
+	      QNMinimizer qn = new QNMinimizer(15, true);
+		//qn.minimize(function, functionTolerance, initial)
 
 	}
 

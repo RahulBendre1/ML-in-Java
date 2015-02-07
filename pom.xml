@@ -39,5 +39,11 @@
 			<version>0.16</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.guokr</groupId>
+			<artifactId>stan-cn-tag</artifactId>
+			<version>0.0.6</version>
+		</dependency>
+
 	</dependencies>
 </project>
